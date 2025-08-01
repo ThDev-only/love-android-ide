@@ -13,7 +13,7 @@ public class MainActivity extends Activity {
         parent.setLayoutParams(new LinearLayout.LayoutParams(-1,-1));
         parent.setBackgroundColor(Color.BLUE);
         
-        setContentView(parent);
+        setContentView(parent); 
     }
     
 }
