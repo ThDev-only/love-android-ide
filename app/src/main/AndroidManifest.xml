@@ -30,6 +30,18 @@
         android:label="${NAME}">
         <!-- You don't have to change the activity class unless you have special needs! !-->
         <activity
+            android:name="org.love2d.android.MainActivity"
+            android:exported="true"
+            android:theme="@android:style/Theme.Material.NoActionBar"
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|navigation"
+            android:screenOrientation="${ORIENTATION}">
+            <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
+                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+         <activity
             android:name="org.love2d.android.GameActivity"
             android:exported="true"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
@@ -39,14 +51,15 @@
             <!-- Allow app activity re-created -->
             <meta-data android:name="SDL_ENV.SDL_ANDROID_ALLOW_RECREATE_ACTIVITY" android:value="1" />
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+               
                 <category android:name="tv.ouya.intent.category.GAME" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
             </intent-filter>
+
         </activity>
+        
         <activity
             android:name=".IntentReceiverActivity"
             android:exported="true"
