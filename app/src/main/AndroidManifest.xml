@@ -30,7 +30,7 @@
         android:label="${NAME}">
         <!-- You don't have to change the activity class unless you have special needs! !-->
         <activity
-            android:name="org.love2d.android.MainActivity"
+            android:name="org.love2d.android.Main"
             android:exported="true"
             android:theme="@android:style/Theme.Material.NoActionBar"
             android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|navigation"

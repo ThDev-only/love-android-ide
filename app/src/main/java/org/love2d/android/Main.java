@@ -5,7 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 
-public class MainActivity extends Activity {
+public class Main extends Activity {
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
