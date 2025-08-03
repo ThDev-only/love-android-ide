@@ -130,11 +130,11 @@ android {
                 srcDirs += retrieveAll3pModules()
             }
         }
-        normal {
+        /*normal {
             java {
                 srcDir 'src/normal/java'
             }
-        }
+        }*/
     }
 
     compileOptions {
