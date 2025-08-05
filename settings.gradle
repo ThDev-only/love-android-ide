@@ -8,3 +8,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "LÖVE for Android"
 include ':app'
+include ':codeview'
+include ':treeview'

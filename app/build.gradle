@@ -176,6 +176,12 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.3.2'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     implementation 'com.google.oboe:oboe:1.9.3'
+    
+    //treeView for FileTree
+    implementation(project(":treeview"))
+    
+    //CodeView
+    implementation(project(":codeview"))
 }
 
 // We don't even use Kotlin. Why we have to care about it?
