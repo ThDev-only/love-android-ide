@@ -25,43 +25,22 @@ jobs:
         distribution: adopt-hotspot
         java-version: 17
         cache: gradle
-    - name: Build Normal Flavor
-      run: bash ./gradlew assembleNormalRecord${{ matrix.build_type }}
-    - name: Build Release-specific Binaries
-      if: ${{ matrix.build_type == 'Release' }}
-      run: bash ./gradlew bundleNormalNoRecordRelease bundleEmbedRecordRelease bundleEmbedNoRecordRelease
-    - name: Artifact (Normal debug APK)
+    - name: Build APK
+      run: |
+        if [ "${{ matrix.build_type }}" == "Debug" ]; then
+          ./gradlew assembleDebug
+        else
+          ./gradlew assembleRelease
+        fi
+    - name: Upload APK Debug
       if: ${{ matrix.build_type == 'Debug' }}
       uses: actions/upload-artifact@v4
       with:
-        name: love-android-debug.apk
-        path: app/build/outputs/apk/normalRecord/debug/app-normal-record-debug.apk
-    - name: Artifact (Normal unsigned APK)
+        name: app-debug.apk
+        path: app/build/outputs/apk/debug/app-debug.apk
+    - name: Upload APK Release
       if: ${{ matrix.build_type == 'Release' }}
       uses: actions/upload-artifact@v4
       with:
-        name: love-android.apk
-        path: app/build/outputs/apk/normalRecord/release/app-normal-record-release-unsigned.apk
-    - name: Artifact (Normal AAB w/o recording)
-      if: ${{ matrix.build_type == 'Release' }}
-      uses: actions/upload-artifact@v4
-      with:
-        name: love-android-ps.aab
-        path: app/build/outputs/bundle/normalNoRecordRelease/app-normal-noRecord-release.aab
-    - name: Artifact (Embed AAB)
-      if: ${{ matrix.build_type == 'Release' }}
-      uses: actions/upload-artifact@v4
-      with:
-        name: love-android-embed-record.aab
-        path: app/build/outputs/bundle/embedRecordRelease/app-embed-record-release.aab
-    - name: Artifact (Embed AAB w/o recording)
-      if: ${{ matrix.build_type == 'Release' }}
-      uses: actions/upload-artifact@v4
-      with:
-        name: love-android-embed.aab
-        path: app/build/outputs/bundle/embedNoRecordRelease/app-embed-noRecord-release.aab
-    - name: Artifact (Debug symbols)
-      uses: actions/upload-artifact@v4
-      with:
-        name: love-android-unstripped-debugsyms-${{ matrix.build_type }}
-        path: app/build/intermediates/cxx
+        name: app-release-unsigned.apk
+        path: app/build/outputs/apk/release/app-release-unsigned.apk
