@@ -25,22 +25,15 @@ jobs:
         distribution: adopt-hotspot
         java-version: 17
         cache: gradle
-    - name: Build APK
-      run: |
-        if [ "${{ matrix.build_type }}" == "Debug" ]; then
-          ./gradlew assembleDebug
-        else
-          ./gradlew assembleRelease
-        fi
-    - name: Upload APK Debug
+    - name: Artifact (Normal debug APK)
       if: ${{ matrix.build_type == 'Debug' }}
       uses: actions/upload-artifact@v4
       with:
-        name: app-debug.apk
-        path: app/build/outputs/apk/debug/app-debug.apk
-    - name: Upload APK Release
+        name: love-android-debug.apk
+        path: app/build/outputs/apk/normalRecord/debug/app-normal-record-debug.apk
+    - name: Artifact (Normal unsigned APK)
       if: ${{ matrix.build_type == 'Release' }}
       uses: actions/upload-artifact@v4
       with:
-        name: app-release-unsigned.apk
-        path: app/build/outputs/apk/release/app-release-unsigned.apk
+        name: love-android.apk
+        path: app/build/outputs/apk/normalRecord/release/app-normal-record-release-unsigned.apk
